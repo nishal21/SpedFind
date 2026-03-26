@@ -59,18 +59,31 @@ function evaluateNetwork(down, up, ping, jitter, packetLoss) {
   let grade = 'F', color = 'text-red-500', bg = 'bg-red-500/20', text = 'Severely Degraded';
   let badges = [];
 
-  if (down >= 500 && up >= 100 && ping <= 15 && jitter <= 2 && packetLoss === 0) {
+  // S Tier: Fiber/Hyper-fast connections
+  if (down >= 300 && up >= 50 && ping <= 20 && jitter <= 5 && packetLoss === 0) {
     grade = 'S'; color = 'text-[#00ff9d]'; bg = 'bg-[#00ff9d]/20'; text = 'Enterprise Grade Fiber';
     badges = ['Competitive E-Sports', '8K Streaming', 'Massive File Sync'];
-  } else if (down >= 100 && up >= 20 && ping <= 30 && packetLoss === 0) {
+  
+  // A Tier: Excellent Cable/Broadband
+  } else if (down >= 100 && up >= 20 && ping <= 50 && packetLoss <= 1) {
     grade = 'A'; color = 'text-emerald-400'; bg = 'bg-emerald-400/20'; text = 'Excellent Broadband';
     badges = ['4K Streaming', 'Online Gaming', 'HD Video Calls'];
-  } else if (down >= 25 && up >= 5 && ping <= 80 && packetLoss < 2) {
+  
+  // B Tier: Good standard connection
+  } else if (down >= 25 && up >= 5 && ping <= 100 && packetLoss < 3) {
     grade = 'B'; color = 'text-cyan-400'; bg = 'bg-cyan-400/20'; text = 'Good Connection';
     badges = ['1080p Streaming', 'Casual Gaming', 'Web Browsing'];
-  } else if (down >= 10 && up >= 1 && ping <= 150) {
+  
+  // C Tier: Average but usable (Very high ping penalizes it here)
+  } else if (down >= 10 && up >= 1 && ping <= 300) {
     grade = 'C'; color = 'text-orange-400'; bg = 'bg-orange-400/20'; text = 'Usable / Average';
     badges = ['720p Streaming', 'Basic Browsing', 'Email'];
+  
+  // High Latency Penalty (Your scenario)
+  } else if (down >= 10 && ping > 300) {
+    grade = 'D'; color = 'text-yellow-500'; bg = 'bg-yellow-500/20'; text = 'High Latency / Slow Response';
+    badges = ['Basic Web Loading', 'Large Downloads OK', 'NO Live Calls'];
+  
   } else {
     badges = ['Text Messaging', 'Basic Web Loading'];
   }
