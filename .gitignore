@@ -1,0 +1,21 @@
+# python/pip
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+.agent 
+
+# node/npm
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+
+# IDEs and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

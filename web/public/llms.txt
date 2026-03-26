@@ -1,0 +1,28 @@
+# SpedFind
+
+> Pro-Grade Network Diagnostics
+
+SpedFind is a highly accurate, free, and open-source internet speed test tool that measures download speed, upload speed, latency (ping), jitter, and packet loss.
+
+## Project Information
+- **Repository:** https://github.com/nishal21/SpedFind
+- **Live Website:** https://nishal21.github.io/SpedFind/
+- **Author:** Nishal
+
+## Tech Stack
+- **Frontend:** React, Vite, Tailwind CSS v4
+- **Backend API:** Python, FastAPI (Streaming data for accurate speed testing)
+- **Deployment:** GitHub Pages (Frontend), Render/VPS (Backend)
+
+## Features
+- **Neo-Brutalist Cyber-HUD UI:** Immersive, developer-focused interface.
+- **Accurate Telemetry:** Uses `ipinfo.io` for ISP, ASN, and geographic location.
+- **Network Evaluation:** Automatically grades the network (S, A, B, C, F) and provides suitability tags (e.g., 8K Streaming, Casual Gaming).
+- **Data Consumption Tracking:** Measures exact payload size used during tests.
+- **Real-Time Visualization:** SVG-based live area charts for download/upload monitoring.
+
+## Application Architecture
+- `/web`: React frontend using Vite and native Tailwind CSS v4.
+- `/api`: FastAPI backend streaming endpoints for true download/upload measurements without using legacy speedtest APIs.
+- `/core`: Shared core Python logic.
+- `/cli`: Command-line interface for terminal usage via `rich` library.

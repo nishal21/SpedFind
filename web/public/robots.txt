@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://nishal21.github.io/SpedFind/sitemap.xml
+
+# LLM Crawler File
+Allow: /llms.txt
