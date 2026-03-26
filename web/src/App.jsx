@@ -1,8 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-// Use environment variable for API URL (e.g., VITE_API_BASE=http://127.0.0.1:8000 for local dev)
-// Fallback to the production Render URL if not specified
-const API_BASE = import.meta.env.VITE_API_BASE;
+// Environment variable for API URL (e.g., VITE_API_BASE=http://127.0.0.1:8000 for local dev)
+// Explicitly check if VITE_API_BASE exists, isn't literally "undefined", or empty
+const getApiBase = () => {
+  try {
+    const envApi = import.meta.env.VITE_API_BASE;
+    if (envApi && envApi !== 'undefined' && envApi !== 'null') {
+      return envApi;
+    }
+  } catch (e) {}
+  
+  // If running on localhost without an env variable, assume local python backend
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://127.0.0.1:8000';
+  }
+  
+  // Production fallback MUST be defined in your deployment platform's environment variables (e.g., GitHub Pages settings)
+  // We do not hardcode the production URL here for security.
+  console.error("VITE_API_BASE environment variable is missing in production!");
+  return ''; 
+};
+
+const API_BASE = getApiBase();
 
 // --- High-Performance SVG Area Chart ---
 function LiveAreaChart({ data, colorHex, maxPoints = 40 }) {
