@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,6 +35,8 @@ jobs:
         
       - name: Build React App
         working-directory: ./web
+        env:
+          VITE_API_BASE: ${{ vars.VITE_API_BASE || secrets.VITE_API_BASE }}
         run: npm run build
         
       - name: Setup Pages
